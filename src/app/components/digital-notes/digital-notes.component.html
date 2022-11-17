@@ -1,0 +1,36 @@
+<div class="container">
+    <h4 class="pt-2">Notes</h4>
+    <form [formGroup]="form">
+        <textarea formControlName="notes" class="form-control">
+
+        </textarea>
+        <input (click)="addNotes()" [ngClass]="{'disabled': form.invalid}" type="submit" class="fourth m-0 mt-2 pointer" value="Submit">
+      </form>
+      <div class="row mt-2" >
+        <div class="col-md-8">
+            <input type="text" [(ngModel)]="keyword" class="form-control"  placeholder="Search" name="">
+        </div>
+        <div class="col-md-4 d-flex">
+            <input  (click)="search()"  type="submit" class="m-0 mt-2 pointer mr-2" value="Search">
+            <input  (click)="reset()"  type="submit" class="m-0 mt-2 pointer" value="Reset">
+        </div>
+      </div>
+      <table class="table mt-2" *ngIf="notesList.length">
+        <thead>
+            <th style="width: 10%">Sl.No</th>
+        <th style="width: 90%">Notes</th>  
+        </thead>
+        
+        <tbody>
+            <tr class="pointer" (click)="details(i)" *ngFor="let row of sortData()| paginate: { itemsPerPage: perpage, currentPage: p };let i=index">
+                <td>
+                    {{i+1}}
+                </td>
+                <td>
+                    {{row?.notes}}
+                </td>
+            </tr>
+        </tbody>
+      </table>
+      <pagination-controls *ngIf="notesList.length" (pageChange)="p = $event"></pagination-controls>
+</div>

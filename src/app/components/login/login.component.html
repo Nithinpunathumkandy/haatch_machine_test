@@ -1,0 +1,21 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+     
+      
+      <!-- Login Form -->
+      <form [formGroup]="form">
+        <input formControlName="email" type="email" id="login" class="fadeIn second" name="login" placeholder="login">
+        <p class="text-danger pt-1" *ngIf="form.controls['email'].errors && formSubmitted">Please enter valid email</p>
+        <input formControlName="password" type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+        <p class="text-danger pt-1" *ngIf="form.controls['password'].errors && formSubmitted">Please enter password</p>
+        <p class="text-danger pt-1" *ngIf="wrongCredentials && formSubmitted">Please enter valid username and password</p>
+        <input style="cursor: pointer;" (click)="login()" type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+    
+     
+  
+    </div>
+  </div>
